@@ -9,6 +9,12 @@ java {
     targetCompatibility = JavaVersion.VERSION_11
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+}
+
 dependencies {
     implementation("javax.inject:javax.inject:1")
     implementation("com.squareup.okhttp3:mockwebserver:4.10.0")

@@ -6,66 +6,83 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 repositories {
+
     mavenCentral()
 }
 
 android {
+
     compileSdk 33
+
     defaultConfig {
+
         minSdkVersion 26
         targetSdkVersion 33
         versionCode 1
         versionName '1.0.0'
         applicationId 'com.shareconnect.transmissionconnect'
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         testInstrumentationRunnerArguments clearPackageData: 'true'
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
+
     compileOptions {
+
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+
     kotlinOptions {
+
         jvmTarget = '11'
     }
+
     buildTypes {
+
         debug {
+
             manifestPlaceholders.crashlyticsEnabled = false
         }
+
         release {
+
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             manifestPlaceholders.crashlyticsEnabled = true
 
-            lintOptions {
+            lint {
+
                 disable 'MissingTranslation'
                 abortOnError false
             }
         }
     }
+
     packagingOptions {
+
         resources {
+
             excludes += ['META-INF/notice.txt', 'META-INF/license.txt', 'META-INF/LICENSE.txt', 'META-INF/NOTICE.txt']
         }
     }
 
-    dataBinding {
-        enabled true
-    }
-
     buildFeatures {
+
         viewBinding true
+        dataBinding true
     }
 
     testOptions {
+
         execution 'ANDROIDX_TEST_ORCHESTRATOR'
     }
 
     useLibrary 'org.apache.http.legacy'
-    namespace 'net.yupol.transmissionremote.app'
+    namespace 'com.shareconnect.transmissionconnect'
 }
 
 dependencies {
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
 

@@ -1,27 +1,50 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
-    ext.kotlin_version = '1.9.21'
+
     ext.hilt_version = '2.50'
+    ext.kotlin_version = '1.9.21'
+
     repositories {
-        google()
+
+        mavenLocal()
+
+        maven { url 'https://repo.huaweicloud.com/repository/maven/' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jetbrains' }
+        maven { url 'https://mirrors.ustc.edu.cn/jetbrains/' }
+        maven { url 'https://mirrors.tuna.tsinghua.edu.cn/jetbrains/' }
+        maven { url "https://jitpack.io" }
         mavenCentral()
+        google()
+        maven { url 'https://maven.pkg.jetbrains.space/public/p/compose/dev' }
     }
+
     dependencies {
+
         classpath 'com.android.tools.build:gradle:7.4.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.gms:google-services:4.4.0'
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.9'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
         classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
     }
 }
 
 allprojects {
+
     repositories {
-        google()
-        mavenCentral()
-        jcenter()
+
+        mavenLocal()
+
+        maven { url 'https://repo.huaweicloud.com/repository/maven/' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jetbrains' }
+        maven { url 'https://mirrors.ustc.edu.cn/jetbrains/' }
+        maven { url 'https://mirrors.tuna.tsinghua.edu.cn/jetbrains/' }
         maven { url "https://jitpack.io" }
+        mavenCentral()
+        google()
+        maven { url 'https://maven.pkg.jetbrains.space/public/p/compose/dev' }
     }
 }
