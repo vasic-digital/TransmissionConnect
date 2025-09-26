@@ -16,7 +16,7 @@
             android:textSize="@dimen/abc_text_size_title_material"
             android:textStyle="bold"
             android:text="@string/global_bandwidth_limits"/>
-        <fragment android:name="net.yupol.transmissionremote.app.torrentdetails.BandwidthLimitFragment"
+        <fragment android:name="com.shareconnect.transmissionconnect.torrentdetails.BandwidthLimitFragment"
             android:id="@+id/global_bandwidth_limit_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
             android:text="@string/turtle_speed_limits_description"/>
         <fragment
             xmlns:custom="http://schemas.android.com/apk/res-auto"
-            android:name="net.yupol.transmissionremote.app.torrentdetails.BandwidthLimitFragment"
+            android:name="com.shareconnect.transmissionconnect.torrentdetails.BandwidthLimitFragment"
             android:id="@+id/alt_bandwidth_limit_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -2,8 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <variable name="dir" type="net.yupol.transmissionremote.app.model.Dir" />
-        <variable name="file" type="net.yupol.transmissionremote.app.model.json.File" />
+        <variable name="dir" type="com.shareconnect.transmissionconnect.model.Dir" />
+        <variable name="file" type="com.shareconnect.transmissionconnect.model.json.File" />
     </data>
     <FrameLayout
         android:id="@+id/root_layout"

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <import type="net.yupol.transmissionremote.app.sorting.SortOrder" />
+        <import type="com.shareconnect.transmissionconnect.sorting.SortOrder" />
         <import type="android.view.View" />
-        <variable name="sortedBy" type="net.yupol.transmissionremote.app.sorting.PeersSortedBy" />
-        <variable name="sortOrder" type="net.yupol.transmissionremote.app.sorting.SortOrder" />
+        <variable name="sortedBy" type="com.shareconnect.transmissionconnect.sorting.PeersSortedBy" />
+        <variable name="sortOrder" type="com.shareconnect.transmissionconnect.sorting.SortOrder" />
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"

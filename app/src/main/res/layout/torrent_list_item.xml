@@ -17,7 +17,7 @@
         android:descendantFocusability="blocksDescendants"
         android:background="?android:attr/selectableItemBackground">
 
-        <net.yupol.transmissionremote.app.torrentlist.PlayPauseButton
+        <com.shareconnect.transmissionconnect.torrentlist.PlayPauseButton
             android:id="@+id/pause_resume_button"
             android:layout_width="@dimen/torrent_list_start_button_size"
             android:layout_height="@dimen/torrent_list_start_button_size"

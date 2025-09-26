@@ -26,7 +26,7 @@
                 android:minHeight="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 android:theme="@style/ActionBarTheme">
-                <net.yupol.transmissionremote.app.actionbar.TurtleModeButton
+                <com.shareconnect.transmissionconnect.actionbar.TurtleModeButton
                     xmlns:custom="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/turtle_mode_button"
                     android:layout_width="wrap_content"

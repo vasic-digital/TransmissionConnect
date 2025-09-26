@@ -3,14 +3,14 @@
     <data>
 
         <import type="android.view.View" />
-        <import type="net.yupol.transmissionremote.app.torrentdetails.InfoPageBindingUtils" />
-        <import type="net.yupol.transmissionremote.app.utils.TextUtils" />
+        <import type="com.shareconnect.transmissionconnect.torrentdetails.InfoPageBindingUtils" />
+        <import type="com.shareconnect.transmissionconnect.utils.TextUtils" />
         <variable
             name="torrent"
-            type="net.yupol.transmissionremote.app.model.json.Torrent" />
+            type="com.shareconnect.transmissionconnect.model.json.Torrent" />
         <variable
             name="torrentInfo"
-            type="net.yupol.transmissionremote.app.model.json.TorrentInfo" />
+            type="com.shareconnect.transmissionconnect.model.json.TorrentInfo" />
     </data>
 
     <FrameLayout

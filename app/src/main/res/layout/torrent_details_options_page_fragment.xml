@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/tr_abc_text_size_body_1_material"
                     android:text="@string/stay_within_global_bandwidth"/>
-                <fragment android:name="net.yupol.transmissionremote.app.torrentdetails.BandwidthLimitFragment"
+                <fragment android:name="com.shareconnect.transmissionconnect.torrentdetails.BandwidthLimitFragment"
                     android:id="@+id/bandwidth_limit_fragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

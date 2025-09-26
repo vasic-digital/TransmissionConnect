@@ -2,8 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <import type="android.view.View" />
-        <import type="net.yupol.transmissionremote.app.utils.TextUtils" />
-        <variable name="peer" type="net.yupol.transmissionremote.app.model.json.Peer" />
+        <import type="com.shareconnect.transmissionconnect.utils.TextUtils" />
+        <variable name="peer" type="com.shareconnect.transmissionconnect.model.json.Peer" />
     </data>
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"

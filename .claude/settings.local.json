@@ -2,7 +2,12 @@
   "permissions": {
     "allow": [
       "Bash(find:*)",
-      "Bash(./gradlew:*)"
+      "Bash(./gradlew:*)",
+      "Bash(xargs sed:*)",
+      "Bash(while read file)",
+      "Bash(do if ! grep -q \"import com\\.shareconnect\\.transmissionconnect\\.R;\" \"$file\")",
+      "Bash(python3:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []

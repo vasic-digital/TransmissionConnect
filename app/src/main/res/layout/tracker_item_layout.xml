@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View" />
-        <import type="net.yupol.transmissionremote.app.utils.TextUtils" />
-        <variable name="trackerStats" type="net.yupol.transmissionremote.app.model.json.TrackerStats" />
+        <import type="com.shareconnect.transmissionconnect.utils.TextUtils" />
+        <variable name="trackerStats" type="com.shareconnect.transmissionconnect.model.json.TrackerStats" />
     </data>
     <LinearLayout
         android:orientation="vertical"
