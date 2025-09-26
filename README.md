@@ -2,9 +2,12 @@
 
 Transmission Remote is an Android application which allows you to remotely control [Transmission BitTorrent client](https://www.transmissionbt.com).  
 It works through the web interface (so remote access must be enabled in Transmission preferences).
-Acess is obtained from Android and supported the integrate with [ShareConnect](https://github.com/vasic-digital/ShareConnect) application..
+Acess is obtained from Android and supported the integrate with [ShareConnect](https://github.com/vasic-digital/ShareConnect) application.
+
+Main codebase is forked from: [https://github.com/y-polek/TransmissionRemote](https://github.com/y-polek/TransmissionRemote) project repository.
 
 ## License
+
 ```
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
