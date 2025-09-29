@@ -7,7 +7,6 @@ import com.google.api.client.json.JsonObjectParser
 import com.google.api.client.json.jackson2.JacksonFactory
 import com.octo.android.robospice.persistence.exception.SpiceException
 import com.octo.android.robospice.request.listener.RequestListener
-import com.shareconnect.transmissionconnect.BuildConfig
 import com.shareconnect.transmissionconnect.server.Server
 import com.shareconnect.transmissionconnect.transport.TransportManager
 import com.shareconnect.transmissionconnect.transport.request.Request
@@ -33,10 +32,10 @@ class OkHttpTransportManager(
 ) : TransportManager {
 
     private val okHttpClient = OkHttpClient.Builder().apply {
+
         addInterceptor(SessionIdInterceptor())
-        if (BuildConfig.DEBUG) {
-            addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-        }
+        addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
+
         if (server.isAuthenticationEnabled) {
             authenticator(BasicAuthenticator(server.userName.orEmpty(), server.password.orEmpty()))
         }
