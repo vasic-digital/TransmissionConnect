@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Transmission Remote</string>
+    <string name="app_name">TransmissionConnect</string>
     <string name="search_hing">查找种子</string>
 
     <!-- Actions -->

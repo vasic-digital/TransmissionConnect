@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an Android application called "Transmission Remote" that allows remote control of Transmission BitTorrent client servers. The app is forked from the original TransmissionRemote project and integrates with the ShareConnect application.
+This is an Android application called "TransmissionConnect" that allows remote control of Transmission BitTorrent client servers. The app is forked from the original TransmissionRemote project and integrates with the ShareConnect application.
 
 - **Package**: `com.shareconnect.transmissionconnect`
 - **Base Package**: `net.yupol.transmissionremote.app`
