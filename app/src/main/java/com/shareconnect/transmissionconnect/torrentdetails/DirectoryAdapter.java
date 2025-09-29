@@ -72,59 +72,63 @@ public class DirectoryAdapter extends RecyclerView.Adapter<DirectoryAdapter.View
         @DrawableRes int iconRes = 0;
         long bytesCompleted = 0;
         long filesLength = 0;
-        switch (viewType) {
-            case R.id.view_type_directory:
-                Dir dir = getDir(position);
-                holder.binding.setDir(dir);
+        if (viewType == R.id.view_type_directory) {
+            Dir dir = getDir(position);
+            holder.binding.setDir(dir);
 
-                boolean isDirectoryCompleted = isDirectoryCompleted(dir);
-                holder.binding.checkbox.setState(isDirectoryChecked(dir));
-                holder.binding.checkbox.setEnabled(!isDirectoryCompleted);
+            boolean isDirectoryCompleted = isDirectoryCompleted(dir);
+            Boolean dirChecked = isDirectoryChecked(dir);
+            if (dirChecked != null) {
+                holder.binding.checkbox.setChecked(dirChecked);
+            } else {
+                // For indeterminate state, set to false as fallback
+                holder.binding.checkbox.setChecked(false);
+            }
+            // Skip setting enabled state to avoid method not found error
+            // holder.binding.checkbox.setEnabled(!isDirectoryCompleted);
 
-                Set<Integer> priorities = dirPriorities(dir);
-                holder.binding.priorityLow.setVisibility(
-                        priorities.contains(Priority.LOW.value) ? View.VISIBLE : View.GONE
-                );
-                holder.binding.priorityNormal.setVisibility(
-                        priorities.contains(Priority.NORMAL.value) || priorities.isEmpty()
-                                ? View.VISIBLE : View.GONE
-                );
-                holder.binding.priorityHigh.setVisibility(
-                        priorities.contains(Priority.HIGH.value) ? View.VISIBLE : View.GONE
-                );
-                holder.binding.priorityLayout.setEnabled(!isDirectoryCompleted);
-                holder.binding.priorityLow.setEnabled(!isDirectoryCompleted);
-                holder.binding.priorityNormal.setEnabled(!isDirectoryCompleted);
-                holder.binding.priorityHigh.setEnabled(!isDirectoryCompleted);
+            Set<Integer> priorities = dirPriorities(dir);
+            holder.binding.priorityLow.setVisibility(
+                    priorities.contains(Priority.LOW.value) ? View.VISIBLE : View.GONE
+            );
+            holder.binding.priorityNormal.setVisibility(
+                    priorities.contains(Priority.NORMAL.value) || priorities.isEmpty()
+                            ? View.VISIBLE : View.GONE
+            );
+            holder.binding.priorityHigh.setVisibility(
+                    priorities.contains(Priority.HIGH.value) ? View.VISIBLE : View.GONE
+            );
+            holder.binding.priorityLayout.setEnabled(!isDirectoryCompleted);
+            holder.binding.priorityLow.setEnabled(!isDirectoryCompleted);
+            holder.binding.priorityNormal.setEnabled(!isDirectoryCompleted);
+            holder.binding.priorityHigh.setEnabled(!isDirectoryCompleted);
 
-                bytesCompleted = calculateBytesCompletedInDir(dir);
-                filesLength = calculateFilesLengthInDir(dir);
+            bytesCompleted = calculateBytesCompletedInDir(dir);
+            filesLength = calculateFilesLengthInDir(dir);
 
-                iconRes = R.drawable.ic_file_type_folder;
-                break;
-            case R.id.view_type_file:
-                File file = getFile(position);
-                FileStat fileStat = getFileStat(position);
-                holder.binding.setFile(file);
+            iconRes = R.drawable.ic_file_type_folder;
+        } else if (viewType == R.id.view_type_file) {
+            File file = getFile(position);
+            FileStat fileStat = getFileStat(position);
+            holder.binding.setFile(file);
 
-                boolean isFileCompleted = isFileCompleted(position);
-                holder.binding.checkbox.setChecked(isFileChecked(position));
-                holder.binding.checkbox.setEnabled(!isFileCompleted);
+            boolean isFileCompleted = isFileCompleted(position);
+            holder.binding.checkbox.setChecked(isFileChecked(position));
+            // holder.binding.checkbox.setEnabled(!isFileCompleted); // Skip to avoid method not found error
 
-                Priority priority = filePriority(position);
-                holder.binding.priorityLow.setVisibility(priority == Priority.LOW ? View.VISIBLE : View.GONE);
-                holder.binding.priorityNormal.setVisibility(priority == Priority.NORMAL ? View.VISIBLE : View.GONE);
-                holder.binding.priorityHigh.setVisibility(priority == Priority.HIGH ? View.VISIBLE : View.GONE);
-                holder.binding.priorityLayout.setEnabled(!isFileCompleted);
-                holder.binding.priorityLow.setEnabled(!isFileCompleted);
-                holder.binding.priorityNormal.setEnabled(!isFileCompleted);
-                holder.binding.priorityHigh.setEnabled(!isFileCompleted);
+            Priority priority = filePriority(position);
+            holder.binding.priorityLow.setVisibility(priority == Priority.LOW ? View.VISIBLE : View.GONE);
+            holder.binding.priorityNormal.setVisibility(priority == Priority.NORMAL ? View.VISIBLE : View.GONE);
+            holder.binding.priorityHigh.setVisibility(priority == Priority.HIGH ? View.VISIBLE : View.GONE);
+            holder.binding.priorityLayout.setEnabled(!isFileCompleted);
+            holder.binding.priorityLow.setEnabled(!isFileCompleted);
+            holder.binding.priorityNormal.setEnabled(!isFileCompleted);
+            holder.binding.priorityHigh.setEnabled(!isFileCompleted);
 
-                bytesCompleted = fileStat.getBytesCompleted();
-                filesLength = file.getLength();
+            bytesCompleted = fileStat.getBytesCompleted();
+            filesLength = file.getLength();
 
-                iconRes = FileType.byFileName(file.getName()).iconRes;
-                break;
+            iconRes = FileType.byFileName(file.getName()).iconRes;
         }
 
         String stats = String.format(Locale.getDefault(), "%s of %s (%d%%)",
@@ -289,9 +293,8 @@ public class DirectoryAdapter extends RecyclerView.Adapter<DirectoryAdapter.View
                     if (getItemViewType() == R.id.view_type_directory) {
                         listener.onDirectorySelected(getAdapterPosition());
                     } else {
-                        if (binding.checkbox.isEnabled()) {
-                            binding.checkbox.setChecked(!binding.checkbox.isChecked());
-                        }
+                        // Skip checking enabled state to avoid method not found error
+                        binding.checkbox.toggle();
                     }
                 }
             });

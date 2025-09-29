@@ -265,42 +265,43 @@ public class TorrentDetailsActivity extends BaseSpiceActivity implements SaveCha
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_remove_torrents:
-                RemoveTorrentsDialogFragment.newInstance(torrent.getId())
-                        .show(getSupportFragmentManager(), RemoveTorrentsDialogFragment.TAG_REMOVE_TORRENTS_DIALOG);
-                return true;
-            case R.id.action_pause:
-                getTransportManager().doRequest(new StopTorrentRequest(torrent.getId()), null);
-                return true;
-            case R.id.action_start:
-                getTransportManager().doRequest(new StartTorrentRequest(torrent.getId()), null);
-                return true;
-            case R.id.action_start_now:
-                getTransportManager().doRequest(new StartTorrentRequest(new int[] { torrent.getId() }, true), null);
-                return true;
-            case R.id.action_rename:
-                RenameDialogFragment dialogFragment = RenameDialogFragment.newInstance(torrent.getId(), torrent.getName(), torrent.getName());
-                dialogFragment.show(getSupportFragmentManager(), RENAME_TORRENT_FRAGMENT_TAG);
-                return true;
-            case R.id.action_set_location:
-                ChooseLocationDialogFragment dialog = new ChooseLocationDialogFragment();
-                Bundle args = new Bundle();
-                args.putString(ChooseLocationDialogFragment.ARG_INITIAL_LOCATION, torrentInfo.getDownloadDir());
-                dialog.setArguments(args);
-                dialog.show(getSupportFragmentManager(), TAG_CHOOSE_LOCATION_DIALOG);
-                return true;
-            case R.id.action_verify:
-                getTransportManager().doRequest(new VerifyTorrentRequest(torrent.getId()), null);
-                return true;
-            case R.id.action_reannounce:
-                getTransportManager().doRequest(new ReannounceTorrentRequest(torrent.getId()), null);
-                return true;
-            case R.id.action_share_magnet:
-                shareMagnetLink();
-                return true;
+        int id = item.getItemId();
+        if (id == R.id.action_remove_torrents) {
+            RemoveTorrentsDialogFragment.newInstance(torrent.getId())
+                    .show(getSupportFragmentManager(), RemoveTorrentsDialogFragment.TAG_REMOVE_TORRENTS_DIALOG);
+            return true;
+        } else if (id == R.id.action_pause) {
+            getTransportManager().doRequest(new StopTorrentRequest(torrent.getId()), null);
+            return true;
+        } else if (id == R.id.action_start) {
+            getTransportManager().doRequest(new StartTorrentRequest(torrent.getId()), null);
+            return true;
+        } else if (id == R.id.action_start_now) {
+            getTransportManager().doRequest(new StartTorrentRequest(new int[] { torrent.getId() }, true), null);
+            return true;
+        } else if (id == R.id.action_rename) {
+            RenameDialogFragment dialogFragment = RenameDialogFragment.newInstance(torrent.getId(), torrent.getName(), torrent.getName());
+            dialogFragment.show(getSupportFragmentManager(), RENAME_TORRENT_FRAGMENT_TAG);
+            return true;
+        } else if (id == R.id.action_set_location) {
+            ChooseLocationDialogFragment dialog = new ChooseLocationDialogFragment();
+            Bundle args = new Bundle();
+            args.putString(ChooseLocationDialogFragment.ARG_INITIAL_LOCATION, torrentInfo.getDownloadDir());
+            dialog.setArguments(args);
+            dialog.show(getSupportFragmentManager(), TAG_CHOOSE_LOCATION_DIALOG);
+            return true;
+        } else if (id == R.id.action_verify) {
+            getTransportManager().doRequest(new VerifyTorrentRequest(torrent.getId()), null);
+            return true;
+        } else if (id == R.id.action_reannounce) {
+            getTransportManager().doRequest(new ReannounceTorrentRequest(torrent.getId()), null);
+            return true;
+        } else if (id == R.id.action_share_magnet) {
+            shareMagnetLink();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

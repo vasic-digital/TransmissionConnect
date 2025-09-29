@@ -40,8 +40,7 @@ public abstract class LimitModeAdapter extends BaseAdapter {
 
         TextView textView = view.findViewById(android.R.id.text1);
         textView.setText(getItem(position).getTextRes());
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX,
-                parent.getResources().getDimensionPixelSize(R.dimen.abc_text_size_body_1_material));
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
 
         return view;
     }

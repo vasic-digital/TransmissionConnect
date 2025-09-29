@@ -46,7 +46,7 @@ public abstract class SpeedTextView extends AppCompatTextView {
 
     public static class DownloadSpeedTextView extends SpeedTextView {
         public DownloadSpeedTextView(Context context) {
-            super(context, R.drawable.ic_download, R.color.md_green_A700);
+            super(context, R.drawable.ic_download, android.R.color.holo_green_dark);
 
             CheatSheet.setup(this, R.string.tooltip_total_download_speed);
         }
@@ -54,7 +54,7 @@ public abstract class SpeedTextView extends AppCompatTextView {
 
     public static class UploadSpeedTextView extends SpeedTextView {
         public UploadSpeedTextView(Context context) {
-            super(context, R.drawable.ic_upload, R.color.md_red_A700);
+            super(context, R.drawable.ic_upload, android.R.color.holo_red_dark);
 
             CheatSheet.setup(this, R.string.tooltip_total_upload_speed);
         }

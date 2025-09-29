@@ -99,16 +99,16 @@ public class TrackersAdapter extends RecyclerView.Adapter<TrackersAdapter.ViewHo
             int position = getAdapterPosition();
             if (position == RecyclerView.NO_POSITION) return false;
 
-            switch (item.getItemId()) {
-                case R.id.remove:
-                    listener.onRemoveTrackerClicked(trackerStats[position]);
-                    return true;
-                case R.id.edit:
-                    listener.onEditTrackerUrlClicked(trackerStats[position]);
-                    return true;
-                case R.id.copy:
-                    listener.onCopyTrackerUrlClicked(trackerStats[position]);
-                    return true;
+            int id = item.getItemId();
+            if (id == R.id.remove) {
+                listener.onRemoveTrackerClicked(trackerStats[position]);
+                return true;
+            } else if (id == R.id.edit) {
+                listener.onEditTrackerUrlClicked(trackerStats[position]);
+                return true;
+            } else if (id == R.id.copy) {
+                listener.onCopyTrackerUrlClicked(trackerStats[position]);
+                return true;
             }
             return false;
         }

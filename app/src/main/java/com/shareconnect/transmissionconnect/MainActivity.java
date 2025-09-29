@@ -748,23 +748,23 @@ public class MainActivity extends BaseSpiceActivity implements TorrentUpdater.To
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_turtle_mode:
-                application.setSpeedLimitEnabled(!application.isSpeedLimitEnabled());
-                updateTurtleModeActionIcon();
-                updateSpeedLimitServerPrefs();
-                return true;
-            case R.id.action_open_torrent:
-                new OpenByDialogFragment().show(getSupportFragmentManager(), TAG_OPEN_TORRENT_DIALOG);
-                return true;
-            case R.id.action_start_all_torrents:
-                startAllTorrents();
-                return true;
-            case R.id.action_pause_all_torrents:
-                pauseAllTorrents();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int id = item.getItemId();
+        if (id == R.id.action_turtle_mode) {
+            application.setSpeedLimitEnabled(!application.isSpeedLimitEnabled());
+            updateTurtleModeActionIcon();
+            updateSpeedLimitServerPrefs();
+            return true;
+        } else if (id == R.id.action_open_torrent) {
+            new OpenByDialogFragment().show(getSupportFragmentManager(), TAG_OPEN_TORRENT_DIALOG);
+            return true;
+        } else if (id == R.id.action_start_all_torrents) {
+            startAllTorrents();
+            return true;
+        } else if (id == R.id.action_pause_all_torrents) {
+            pauseAllTorrents();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 
