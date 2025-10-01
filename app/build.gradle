@@ -83,27 +83,27 @@ android {
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    
+
     // Force specific version to avoid Kotlin version conflicts
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.21")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-common:1.9.21")
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.1.10")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-common:2.1.10")
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0'
 
     // AndroidX
-    implementation "androidx.core:core-ktx:1.10.1"
-    implementation 'androidx.annotation:annotation:1.7.1'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation "androidx.core:core-ktx:1.15.0"
+    implementation 'androidx.annotation:annotation:1.9.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
     implementation 'androidx.preference:preference-ktx:1.2.1'
-    implementation 'androidx.core:core-splashscreen:1.0.1'
-    implementation 'androidx.fragment:fragment-ktx:1.6.2'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2'
-    implementation 'androidx.datastore:datastore-preferences:1.0.0'
+    implementation 'androidx.core:core-splashscreen:1.2.0'
+    implementation 'androidx.fragment:fragment-ktx:1.8.6'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.0'
+    implementation 'androidx.datastore:datastore-preferences:1.1.1'
 
-    implementation 'com.google.android.material:material:1.9.0'
-    implementation 'com.google.guava:guava:27.0.1-android'
-    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'com.google.guava:guava:33.3.1-android'
+    implementation 'com.google.code.gson:gson:2.11.0'
     implementation('com.octo.android.robospice:robospice:1.4.14')
     implementation('com.octo.android.robospice:robospice-google-http-client:1.4.14') {
         exclude (group: 'org.apache.httpcomponents', module: 'httpclient')
@@ -128,39 +128,39 @@ dependencies {
     implementation 'com.vdurmont:emoji-java:4.0.0'
 
     // Firebase
-    implementation platform('com.google.firebase:firebase-bom:32.3.1')
+    implementation platform('com.google.firebase:firebase-bom:33.16.0')
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-config-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
     // OkHttp
-    implementation platform('com.squareup.okhttp3:okhttp-bom:4.10.0')
+    implementation platform('com.squareup.okhttp3:okhttp-bom:4.12.0')
     implementation 'com.squareup.okhttp3:okhttp'
     implementation 'com.squareup.okhttp3:logging-interceptor'
 
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
-    
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
+
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
 
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'com.google.truth:truth:1.1.3'
-    testImplementation 'org.mockito.kotlin:mockito-kotlin:4.1.0'
+    testImplementation 'com.google.truth:truth:1.4.4'
+    testImplementation 'org.mockito.kotlin:mockito-kotlin:5.4.0'
 
-    androidTestImplementation 'androidx.test:core:1.5.0'
-    androidTestImplementation 'androidx.test:core-ktx:1.5.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.5'
-    androidTestImplementation 'androidx.test:runner:1.5.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.1'
-    androidTestImplementation 'androidx.test:rules:1.5.0'
-    androidTestImplementation 'com.google.truth:truth:1.1.3'
-    androidTestImplementation 'org.mockito:mockito-android:5.8.0'
-    androidTestImplementation 'com.squareup.okhttp3:mockwebserver:4.10.0'
+    androidTestImplementation 'androidx.test:core:1.6.1'
+    androidTestImplementation 'androidx.test:core-ktx:1.6.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.ext:junit-ktx:1.2.1'
+    androidTestImplementation 'androidx.test:runner:1.6.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.6.1'
+    androidTestImplementation 'androidx.test:rules:1.6.1'
+    androidTestImplementation 'com.google.truth:truth:1.4.4'
+    androidTestImplementation 'org.mockito:mockito-android:5.14.2'
+    androidTestImplementation 'com.squareup.okhttp3:mockwebserver:4.12.0'
     androidTestImplementation project(':mockserver')
-    androidTestUtil 'androidx.test:orchestrator:1.4.2'
+    androidTestUtil 'androidx.test:orchestrator:1.5.1'
 }
 
 

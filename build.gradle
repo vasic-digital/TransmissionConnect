@@ -1,7 +1,7 @@
 buildscript {
 
-    ext.hilt_version = '2.50'
-    ext.kotlin_version = '1.9.21'
+    ext.hilt_version = '2.52'
+    ext.kotlin_version = '2.1.10'
 
     repositories {
         google()
@@ -10,7 +10,7 @@ buildscript {
 
     dependencies {
 
-        classpath 'com.android.tools.build:gradle:8.1.4'
+        classpath 'com.android.tools.build:gradle:8.13.0'
         classpath 'com.google.gms:google-services:4.4.3'
         classpath 'com.google.firebase:firebase-crashlytics-gradle:3.0.6'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
