@@ -110,7 +110,7 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
         createNotificationChannel()
     }
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String?) {
         if (key == getString(R.string.torrent_finished_notification_enabled_key)) {
             if (isNotificationEnabled) {
                 BackgroundUpdater.start(this)
