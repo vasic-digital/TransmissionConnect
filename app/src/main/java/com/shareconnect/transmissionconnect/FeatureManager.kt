@@ -6,9 +6,8 @@ import com.google.firebase.remoteconfig.ConfigUpdate
 import com.google.firebase.remoteconfig.ConfigUpdateListener
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigException
-import javax.inject.Inject
 
-class FeatureManager @Inject constructor(
+class FeatureManager constructor(
     private val remoteConfig: FirebaseRemoteConfig,
     private val crashlytics: FirebaseCrashlytics
 ) {

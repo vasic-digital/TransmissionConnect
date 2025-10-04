@@ -2,9 +2,8 @@ package com.shareconnect.transmissionconnect.logging
 
 import android.util.Log
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import javax.inject.Inject
 
-class Logger @Inject constructor(
+class Logger constructor(
     private val crashlytics: FirebaseCrashlytics
 ) {
 

@@ -80,6 +80,7 @@ import com.shareconnect.transmissionconnect.sorting.SortOrder;
 import com.shareconnect.transmissionconnect.sorting.SortedBy;
 import com.shareconnect.transmissionconnect.theme.ThemeBottomSheet;
 import com.shareconnect.transmissionconnect.theme.ThemeViewModel;
+import com.shareconnect.transmissionconnect.theme.ThemeViewModelFactory;
 import com.shareconnect.transmissionconnect.torrentdetails.TorrentDetailsActivity;
 import com.shareconnect.transmissionconnect.torrentlist.EmptyServerFragment;
 import com.shareconnect.transmissionconnect.torrentlist.RemoveTorrentsDialogFragment;
@@ -114,9 +115,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
-import dagger.hilt.android.AndroidEntryPoint;
-
-@AndroidEntryPoint
 public class MainActivity extends BaseSpiceActivity implements TorrentUpdater.TorrentUpdateListener,
         SharedPreferences.OnSharedPreferenceChangeListener, TransmissionRemote.OnSpeedLimitChangedListener,
         TorrentListFragment.OnTorrentSelectedListener, TorrentListFragment.ContextualActionBarListener,
@@ -323,7 +321,9 @@ public class MainActivity extends BaseSpiceActivity implements TorrentUpdater.To
                     return true;
                 });
 
-        final ThemeViewModel themeViewModel = new ViewModelProvider(this).get(ThemeViewModel.class);
+        final TransmissionRemote app = TransmissionRemote.getApplication(this);
+        final ThemeViewModelFactory factory = new ThemeViewModelFactory(app.preferencesRepository, app.logger);
+        final ThemeViewModel themeViewModel = new ViewModelProvider(this, factory).get(ThemeViewModel.class);
         themeViewModel.getNightMode().observe(this, nightMode -> {
             final int iconRes;
             switch (nightMode) {

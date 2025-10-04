@@ -3,15 +3,12 @@ package com.shareconnect.transmissionconnect.theme
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import com.shareconnect.transmissionconnect.logging.Logger
 import com.shareconnect.transmissionconnect.preferences.PreferencesRepository
-import javax.inject.Inject
 
-@HiltViewModel
-class ThemeViewModel @Inject constructor(
+class ThemeViewModel constructor(
     private val preferencesRepository: PreferencesRepository,
     private val logger: Logger
 ) : ViewModel() {

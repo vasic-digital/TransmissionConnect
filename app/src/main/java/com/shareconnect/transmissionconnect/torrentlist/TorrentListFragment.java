@@ -406,7 +406,7 @@ public class TorrentListFragment extends Fragment implements ChooseLocationDialo
 
         public TorrentsAdapter(Context context) {
             this.context = context;
-            accentColor = ColorUtils.resolveColor(context, com.google.android.material.R.attr.colorPrimary, R.color.accent);
+            accentColor = ColorUtils.resolveColor(context, android.R.attr.colorPrimary, R.color.accent);
         }
 
         public void setTorrents(List<Torrent> torrents) {

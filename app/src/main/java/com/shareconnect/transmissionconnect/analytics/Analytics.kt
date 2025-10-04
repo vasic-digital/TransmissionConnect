@@ -2,9 +2,8 @@ package com.shareconnect.transmissionconnect.analytics
 
 import com.google.firebase.analytics.FirebaseAnalytics.Event
 import com.google.firebase.analytics.FirebaseAnalytics.Param
-import javax.inject.Inject
 
-class Analytics @Inject constructor(
+class Analytics constructor(
     private val analyticsProvider: AnalyticsProvider
 ) {
     fun logScreenView(screenName: String, screenClass: Class<*>) {

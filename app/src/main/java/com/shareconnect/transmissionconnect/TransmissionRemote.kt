@@ -14,9 +14,11 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.evernote.android.job.JobManager
 import com.shareconnect.transmissionconnect.R
-import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.launch
 import com.shareconnect.transmissionconnect.analytics.Analytics
+import com.shareconnect.transmissionconnect.di.AppContainer
+import com.shareconnect.transmissionconnect.FeatureManager
+import com.shareconnect.transmissionconnect.logging.Logger
 import com.shareconnect.transmissionconnect.filtering.Filter
 import com.shareconnect.transmissionconnect.filtering.Filters
 import com.shareconnect.transmissionconnect.model.json.Torrent
@@ -31,9 +33,7 @@ import java.util.LinkedList
 import java.util.Objects
 import java.util.WeakHashMap
 import java.util.stream.Collectors
-import javax.inject.Inject
 
-@HiltAndroidApp
 class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
     private val servers: MutableList<Server?> = LinkedList()
     private var activeServer: Server? = null
@@ -72,12 +72,19 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
     @JvmField
     var appStartupTimeReported = false
 
-    @Inject lateinit var analytics: Analytics
-    @Inject lateinit var featureManager: FeatureManager
-    @Inject lateinit var preferencesRepository: PreferencesRepository
+    private lateinit var appContainer: AppContainer
+    lateinit var analytics: Analytics
+    lateinit var featureManager: FeatureManager
+    lateinit var preferencesRepository: PreferencesRepository
+    lateinit var logger: Logger
 
     override fun onCreate() {
         super.onCreate()
+        appContainer = AppContainer(this)
+        analytics = appContainer.analytics
+        featureManager = appContainer.featureManager
+        preferencesRepository = appContainer.preferencesRepository
+        logger = appContainer.logger
         ProcessLifecycleOwner.get().lifecycleScope.launch {
             preferencesRepository.getNightMode().collect { nightMode ->
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {

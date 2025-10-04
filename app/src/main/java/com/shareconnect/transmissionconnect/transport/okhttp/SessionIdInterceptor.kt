@@ -4,9 +4,8 @@ import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.internal.closeQuietly
-import javax.inject.Inject
 
-class SessionIdInterceptor @Inject constructor(): Interceptor {
+class SessionIdInterceptor constructor(): Interceptor {
 
     private var sessionId: String? = null
 

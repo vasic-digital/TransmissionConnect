@@ -7,14 +7,16 @@ import android.view.ViewGroup
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import dagger.hilt.android.AndroidEntryPoint
 import com.shareconnect.transmissionconnect.R
+import com.shareconnect.transmissionconnect.TransmissionRemote
 import com.shareconnect.transmissionconnect.databinding.ThemeBottomsheetBinding
 
-@AndroidEntryPoint
 class ThemeBottomSheet : BottomSheetDialogFragment() {
 
-    private val viewModel: ThemeViewModel by activityViewModels()
+    private val viewModel: ThemeViewModel by activityViewModels {
+        val app = TransmissionRemote.getApplication(requireContext())
+        ThemeViewModelFactory(app.preferencesRepository, app.logger)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

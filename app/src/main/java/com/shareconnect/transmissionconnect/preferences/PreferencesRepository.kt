@@ -7,9 +7,8 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import com.shareconnect.transmissionconnect.theme.NightMode
-import javax.inject.Inject
 
-class PreferencesRepository @Inject constructor(
+class PreferencesRepository constructor(
     private val dataStore: DataStore<Preferences>
 ) {
 
