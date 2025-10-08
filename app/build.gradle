@@ -81,6 +81,7 @@ android {
 dependencies {
 
     implementation project(':Asinka:asinka')
+    implementation project(':ThemeSync')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     // Force specific version to avoid Kotlin version conflicts
