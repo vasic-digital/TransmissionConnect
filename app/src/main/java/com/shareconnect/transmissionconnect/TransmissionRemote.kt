@@ -37,6 +37,8 @@ import com.shareconnect.rsssync.RSSSyncManager
 import com.shareconnect.rsssync.models.RSSFeedData
 import com.shareconnect.bookmarksync.BookmarkSyncManager
 import com.shareconnect.preferencessync.PreferencesSyncManager
+import com.shareconnect.languagesync.LanguageSyncManager
+import com.shareconnect.languagesync.utils.LocaleHelper
 import java.util.LinkedList
 import java.util.Objects
 import java.util.WeakHashMap
@@ -91,6 +93,11 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
     lateinit var rssSyncManager: RSSSyncManager
     lateinit var bookmarkSyncManager: BookmarkSyncManager
     lateinit var preferencesSyncManager: PreferencesSyncManager
+    lateinit var languageSyncManager: LanguageSyncManager
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(LocaleHelper.onAttach(base))
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -129,12 +136,23 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
             BackgroundUpdater.start(this)
         }
         createNotificationChannel()
+        initializeLanguageSync()
         initializeThemeSync()
         initializeProfileSync()
         initializeHistorySync()
         initializeRSSSync()
         initializeBookmarkSync()
         initializePreferencesSync()
+        observeLanguageChanges()
+    }
+
+    private fun observeLanguageChanges() {
+        ProcessLifecycleOwner.get().lifecycleScope.launch {
+            languageSyncManager.languageChangeFlow.collect { languageData ->
+                // Persist language change so it applies on next app start
+                LocaleHelper.persistLanguage(this@TransmissionRemote, languageData.languageCode)
+            }
+        }
     }
 
     private fun initializeThemeSync() {
@@ -220,6 +238,20 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
 
         ProcessLifecycleOwner.get().lifecycleScope.launch {
             preferencesSyncManager.start()
+        }
+    }
+
+    private fun initializeLanguageSync() {
+        val packageInfo = packageManager.getPackageInfo(packageName, 0)
+        languageSyncManager = LanguageSyncManager.getInstance(
+            context = this,
+            appId = packageName,
+            appName = getString(R.string.app_name),
+            appVersion = packageInfo.versionName ?: "1.0.0"
+        )
+
+        ProcessLifecycleOwner.get().lifecycleScope.launch {
+            languageSyncManager.start()
         }
     }
 

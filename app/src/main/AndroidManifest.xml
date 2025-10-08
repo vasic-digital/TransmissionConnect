@@ -132,6 +132,15 @@
             </intent-filter>
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".preferences.PreferencesActivity"/>
         </activity>
+        <activity android:name=".preferences.LanguagePreferencesActivity"
+            android:exported="false"
+            android:label="Language Selection">
+            <intent-filter>
+                <action android:name=".preferences.LanguagePreferencesActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".preferences.PreferencesActivity"/>
+        </activity>
 
         <service android:name=".transport.NoCacheGoogleHttpClientSpiceService"
             android:exported="false" />
