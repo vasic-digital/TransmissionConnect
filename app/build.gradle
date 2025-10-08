@@ -87,6 +87,7 @@ dependencies {
     implementation project(':RSSSync')
     implementation project(':BookmarkSync')
     implementation project(':PreferencesSync')
+    implementation project(':Localizations')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     // Force specific version to avoid Kotlin version conflicts
