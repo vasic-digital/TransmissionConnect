@@ -38,43 +38,13 @@
             </androidx.appcompat.widget.Toolbar>
         </LinearLayout>
 
-        <View android:id="@+id/fab_overlay"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:background="@color/fab_overlay_color" />
-
-        <com.getbase.floatingactionbutton.FloatingActionsMenu android:id="@+id/add_torrent_button"
+        <com.shareconnect.designsystem.components.fabs.AnimatedFAB
+            android:id="@+id/add_torrent_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:layout_marginBottom="?attr/actionBarSize"
-            app:background="?attr/selectableItemBackgroundBorderless"
-            app:fab_addButtonColorNormal="?attr/colorAccent"
-            app:fab_addButtonColorPressed="?attr/colorAccent"
-            app:fab_addButtonSize="normal"
-            app:fab_labelsPosition="left"
-            app:fab_labelStyle="@style/FabMenuLabelsStyle">
-
-            <com.getbase.floatingactionbutton.FloatingActionButton android:id="@+id/add_torrent_by_file_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                app:fab_icon="@drawable/ic_draft"
-                app:fab_colorNormal="?attr/colorAccent"
-                app:fab_colorPressed="?attr/colorAccent"
-                app:fab_size="mini"
-                app:fab_title="@string/add_torrent_by_file"/>
-
-            <com.getbase.floatingactionbutton.FloatingActionButton android:id="@+id/add_torrent_by_magnet_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:fab_icon="@drawable/ic_magnet"
-                app:fab_colorNormal="?attr/colorAccent"
-                app:fab_colorPressed="?attr/colorAccent"
-                app:fab_size="mini"
-                app:fab_title="@string/add_torrent_by_address"/>
-
-        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp" />
     </FrameLayout>
 </layout>

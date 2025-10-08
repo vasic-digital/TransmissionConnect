@@ -46,7 +46,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.shareconnect.designsystem.components.fabs.AnimatedFAB;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
@@ -443,32 +443,26 @@ public class MainActivity extends BaseSpiceActivity implements TorrentUpdater.To
     }
 
     private void setupFloatingActionButton() {
+        binding.addTorrentButton.setOnClickListener(v -> showAddTorrentDialog());
+    }
 
-        binding.addTorrentByFileButton.setOnClickListener(v -> {
-            binding.addTorrentButton.collapse();
-            onOpenTorrentByFile();
-        });
-
-        binding.addTorrentByMagnetButton.setOnClickListener(v -> {
-            binding.addTorrentButton.collapse();
-            onOpenTorrentByAddress();
-        });
-
-        binding.addTorrentButton.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
-            @Override
-            public void onMenuExpanded() {
-                binding.fabOverlay.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onMenuCollapsed() {
-                binding.fabOverlay.setVisibility(View.GONE);
-            }
-        });
-
-        binding.fabOverlay.setOnClickListener(v -> binding.addTorrentButton.collapse());
-
-        binding.fabOverlay.setVisibility(binding.addTorrentButton.isExpanded() ? View.VISIBLE : View.GONE);
+    private void showAddTorrentDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.open_torrent)
+                .setItems(new CharSequence[]{
+                        getString(R.string.add_torrent_by_file),
+                        getString(R.string.add_torrent_by_address)
+                }, (dialog, which) -> {
+                    switch (which) {
+                        case 0:
+                            onOpenTorrentByFile();
+                            break;
+                        case 1:
+                            onOpenTorrentByAddress();
+                            break;
+                    }
+                })
+                .show();
     }
 
     @Override
@@ -575,8 +569,6 @@ public class MainActivity extends BaseSpiceActivity implements TorrentUpdater.To
             if (bottomToolbar != null) bottomToolbar.setVisibility(View.VISIBLE);
         }
 
-        binding.addTorrentButton.collapseImmediately();
-
         showFab = PreferenceManager.getDefaultSharedPreferences(this)
                 .getBoolean(getString(R.string.show_add_torrent_fab_key), true);
         boolean isListVisible = getTorrentListFragment() != null;
@@ -622,7 +614,6 @@ public class MainActivity extends BaseSpiceActivity implements TorrentUpdater.To
 
         outState.putParcelable(KEY_OPEN_TORRENT_URI, openTorrentUri);
         outState.putString(KEY_OPEN_TORRENT_SCHEME, openTorrentScheme);
-        outState.putBoolean(KEY_FAB_EXPANDED, binding.addTorrentButton.isExpanded());
     }
 
     @Override
@@ -638,13 +629,7 @@ public class MainActivity extends BaseSpiceActivity implements TorrentUpdater.To
 
         hasTorrentList = savedInstanceState.getBoolean(KEY_HAS_TORRENT_LIST, false);
 
-        boolean isFabExpanded = savedInstanceState.getBoolean(KEY_FAB_EXPANDED, false);
-        if (isFabExpanded) {
-            binding.addTorrentButton.expand();
-        } else {
-            binding.addTorrentButton.collapseImmediately();
-        }
-        binding.fabOverlay.setVisibility(isFabExpanded ? View.VISIBLE : View.GONE);
+
     }
 
     @Override
@@ -842,7 +827,6 @@ public class MainActivity extends BaseSpiceActivity implements TorrentUpdater.To
     public void onBackPressed() {
         if (drawer.isDrawerOpen()) drawer.closeDrawer();
         else if (searchMenuItem != null && searchMenuItem.isActionViewExpanded()) searchMenuItem.collapseActionView();
-        else if (binding.addTorrentButton.isExpanded()) binding.addTorrentButton.collapse();
         else super.onBackPressed();
     }
 
