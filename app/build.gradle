@@ -83,6 +83,10 @@ dependencies {
     implementation project(':Asinka:asinka')
     implementation project(':ThemeSync')
     implementation project(':ProfileSync')
+    implementation project(':HistorySync')
+    implementation project(':RSSSync')
+    implementation project(':BookmarkSync')
+    implementation project(':PreferencesSync')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     // Force specific version to avoid Kotlin version conflicts

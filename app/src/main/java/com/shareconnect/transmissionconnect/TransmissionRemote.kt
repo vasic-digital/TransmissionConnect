@@ -31,6 +31,12 @@ import com.shareconnect.transmissionconnect.sorting.SortedBy
 import com.shareconnect.transmissionconnect.theme.NightMode
 import com.shareconnect.profilesync.ProfileSyncManager
 import com.shareconnect.profilesync.models.ProfileData
+import com.shareconnect.themesync.ThemeSyncManager
+import com.shareconnect.historysync.HistorySyncManager
+import com.shareconnect.rsssync.RSSSyncManager
+import com.shareconnect.rsssync.models.RSSFeedData
+import com.shareconnect.bookmarksync.BookmarkSyncManager
+import com.shareconnect.preferencessync.PreferencesSyncManager
 import java.util.LinkedList
 import java.util.Objects
 import java.util.WeakHashMap
@@ -79,7 +85,12 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
     lateinit var featureManager: FeatureManager
     lateinit var preferencesRepository: PreferencesRepository
     lateinit var logger: Logger
+    lateinit var themeSyncManager: ThemeSyncManager
     lateinit var profileSyncManager: ProfileSyncManager
+    lateinit var historySyncManager: HistorySyncManager
+    lateinit var rssSyncManager: RSSSyncManager
+    lateinit var bookmarkSyncManager: BookmarkSyncManager
+    lateinit var preferencesSyncManager: PreferencesSyncManager
 
     override fun onCreate() {
         super.onCreate()
@@ -118,7 +129,26 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
             BackgroundUpdater.start(this)
         }
         createNotificationChannel()
+        initializeThemeSync()
         initializeProfileSync()
+        initializeHistorySync()
+        initializeRSSSync()
+        initializeBookmarkSync()
+        initializePreferencesSync()
+    }
+
+    private fun initializeThemeSync() {
+        val packageInfo = packageManager.getPackageInfo(packageName, 0)
+        themeSyncManager = ThemeSyncManager.getInstance(
+            context = this,
+            appId = packageName,
+            appName = getString(R.string.app_name),
+            appVersion = packageInfo.versionName ?: "1.0.0"
+        )
+
+        ProcessLifecycleOwner.get().lifecycleScope.launch {
+            themeSyncManager.start()
+        }
     }
 
     private fun initializeProfileSync() {
@@ -131,9 +161,65 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
             clientTypeFilter = ProfileData.TORRENT_CLIENT_TRANSMISSION  // Only sync Transmission profiles
         )
 
-        // Start profile sync in background
         ProcessLifecycleOwner.get().lifecycleScope.launch {
             profileSyncManager.start()
+        }
+    }
+
+    private fun initializeHistorySync() {
+        val packageInfo = packageManager.getPackageInfo(packageName, 0)
+        historySyncManager = HistorySyncManager.getInstance(
+            context = this,
+            appId = packageName,
+            appName = getString(R.string.app_name),
+            appVersion = packageInfo.versionName ?: "1.0.0"
+        )
+
+        ProcessLifecycleOwner.get().lifecycleScope.launch {
+            historySyncManager.start()
+        }
+    }
+
+    private fun initializeRSSSync() {
+        val packageInfo = packageManager.getPackageInfo(packageName, 0)
+        rssSyncManager = RSSSyncManager.getInstance(
+            context = this,
+            appId = packageName,
+            appName = getString(R.string.app_name),
+            appVersion = packageInfo.versionName ?: "1.0.0",
+            clientTypeFilter = RSSFeedData.TORRENT_CLIENT_TRANSMISSION  // Only sync Transmission RSS feeds
+        )
+
+        ProcessLifecycleOwner.get().lifecycleScope.launch {
+            rssSyncManager.start()
+        }
+    }
+
+    private fun initializeBookmarkSync() {
+        val packageInfo = packageManager.getPackageInfo(packageName, 0)
+        bookmarkSyncManager = BookmarkSyncManager.getInstance(
+            context = this,
+            appId = packageName,
+            appName = getString(R.string.app_name),
+            appVersion = packageInfo.versionName ?: "1.0.0"
+        )
+
+        ProcessLifecycleOwner.get().lifecycleScope.launch {
+            bookmarkSyncManager.start()
+        }
+    }
+
+    private fun initializePreferencesSync() {
+        val packageInfo = packageManager.getPackageInfo(packageName, 0)
+        preferencesSyncManager = PreferencesSyncManager.getInstance(
+            context = this,
+            appId = packageName,
+            appName = getString(R.string.app_name),
+            appVersion = packageInfo.versionName ?: "1.0.0"
+        )
+
+        ProcessLifecycleOwner.get().lifecycleScope.launch {
+            preferencesSyncManager.start()
         }
     }
 
