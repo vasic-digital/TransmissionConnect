@@ -24,7 +24,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "TransmissionConnect"
+rootProject.name = "TransmissionConnector"
 
 include ':mockserver'
-include ':app'
+include ':TransmissionConnector'
