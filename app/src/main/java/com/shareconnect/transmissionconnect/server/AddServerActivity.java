@@ -1,5 +1,6 @@
 package com.shareconnect.transmissionconnect.server;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.shareconnect.transmissionconnect.R;
+import com.shareconnect.languagesync.utils.LocaleHelper;
 
 public class AddServerActivity extends AppCompatActivity {
 
@@ -19,6 +21,11 @@ public class AddServerActivity extends AppCompatActivity {
     public static final String EXTRA_SEVER = "extra_server";
 
     private ServerDetailsFragment serverDetailsFragment;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

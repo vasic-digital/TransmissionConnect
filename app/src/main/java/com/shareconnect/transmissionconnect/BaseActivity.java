@@ -1,9 +1,16 @@
 package com.shareconnect.transmissionconnect;
 
+import android.content.Context;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import com.shareconnect.languagesync.utils.LocaleHelper;
 
 public abstract class BaseActivity extends AppCompatActivity {
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
 
     @Override
     public void onBackPressed() {
