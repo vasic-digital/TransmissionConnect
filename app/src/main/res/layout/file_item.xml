@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:background="?android:attr/selectableItemBackground">
-            <com.buildware.widget.indeterm.IndeterminateCheckBox android:id="@+id/checkbox"
+            <androidx.appcompat.widget.AppCompatCheckBox android:id="@+id/checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/default_padding_small"

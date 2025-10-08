@@ -13,7 +13,7 @@ import androidx.appcompat.widget.ListPopupWindow;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.buildware.widget.indeterm.IndeterminateCheckBox;
+import android.widget.CompoundButton;
 
 import com.shareconnect.transmissionconnect.R;
 import com.shareconnect.transmissionconnect.databinding.FileItemBinding;
@@ -298,15 +298,14 @@ public class DirectoryAdapter extends RecyclerView.Adapter<DirectoryAdapter.View
                     }
                 }
             });
-            binding.checkbox.setOnStateChangedListener(new IndeterminateCheckBox.OnStateChangedListener() {
+            binding.checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
-                public void onStateChanged(IndeterminateCheckBox buttonView, @Nullable Boolean isChecked) {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (getItemViewType() == R.id.view_type_directory) {
-                        boolean changed = isChecked != isDirectoryChecked(getDir(getAdapterPosition()));
-                        if (isChecked != null && changed) listener.onDirectoryChecked(getAdapterPosition(), isChecked);
+                        boolean changed = isChecked != (isDirectoryChecked(getDir(getAdapterPosition())) == Boolean.TRUE);
+                        if (changed) listener.onDirectoryChecked(getAdapterPosition(), isChecked);
                     } else {
                         Integer fileIndex = getItem(getAdapterPosition());
-                        assert isChecked != null;
                         boolean changed = isChecked != isFileChecked(getAdapterPosition());
                         if (changed) {
                             listener.onFileChecked(fileIndex, isChecked);
