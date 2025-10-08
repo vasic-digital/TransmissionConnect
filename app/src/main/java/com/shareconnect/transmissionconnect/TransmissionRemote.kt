@@ -29,6 +29,8 @@ import com.shareconnect.transmissionconnect.server.Server
 import com.shareconnect.transmissionconnect.sorting.SortOrder
 import com.shareconnect.transmissionconnect.sorting.SortedBy
 import com.shareconnect.transmissionconnect.theme.NightMode
+import com.shareconnect.profilesync.ProfileSyncManager
+import com.shareconnect.profilesync.models.ProfileData
 import java.util.LinkedList
 import java.util.Objects
 import java.util.WeakHashMap
@@ -77,6 +79,7 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
     lateinit var featureManager: FeatureManager
     lateinit var preferencesRepository: PreferencesRepository
     lateinit var logger: Logger
+    lateinit var profileSyncManager: ProfileSyncManager
 
     override fun onCreate() {
         super.onCreate()
@@ -115,6 +118,23 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
             BackgroundUpdater.start(this)
         }
         createNotificationChannel()
+        initializeProfileSync()
+    }
+
+    private fun initializeProfileSync() {
+        val packageInfo = packageManager.getPackageInfo(packageName, 0)
+        profileSyncManager = ProfileSyncManager.getInstance(
+            context = this,
+            appId = packageName,
+            appName = getString(R.string.app_name),
+            appVersion = packageInfo.versionName ?: "1.0.0",
+            clientTypeFilter = ProfileData.TORRENT_CLIENT_TRANSMISSION  // Only sync Transmission profiles
+        )
+
+        // Start profile sync in background
+        ProcessLifecycleOwner.get().lifecycleScope.launch {
+            profileSyncManager.start()
+        }
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String?) {
