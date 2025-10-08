@@ -144,6 +144,9 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
         initializeBookmarkSync()
         initializePreferencesSync()
         observeLanguageChanges()
+
+        // Check if onboarding is needed
+        checkAndLaunchOnboardingIfNeeded()
     }
 
     private fun observeLanguageChanges() {
@@ -536,6 +539,25 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
 
     interface OnSortingChangedListener {
         fun onSortingChanged(comparator: Comparator<Torrent>?)
+    }
+
+    private fun checkAndLaunchOnboardingIfNeeded() {
+        // Check if onboarding has been completed
+        val prefs = getSharedPreferences("onboarding_prefs", MODE_PRIVATE)
+        val onboardingCompleted = prefs.getBoolean("onboarding_completed", false)
+
+        if (!onboardingCompleted) {
+            // For simplicity, always launch onboarding if not completed
+            // In a more complex implementation, we could check for existing data
+            launchOnboarding()
+        }
+    }
+
+    private fun launchOnboarding() {
+        // Launch onboarding activity
+        val intent = android.content.Intent(this, TransmissionConnectOnboardingActivity::class.java)
+        intent.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK or android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
     }
 
     companion object {

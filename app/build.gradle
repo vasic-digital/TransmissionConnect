@@ -81,6 +81,7 @@ android {
 dependencies {
 
     implementation project(':DesignSystem')
+    implementation project(':Onboarding')
     implementation project(':Asinka:asinka')
     implementation project(':ThemeSync')
     implementation project(':ProfileSync')

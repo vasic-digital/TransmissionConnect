@@ -91,6 +91,10 @@
         </activity>
 
         <activity
+            android:name=".TransmissionConnectOnboardingActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".server.AddServerActivity"
             android:label="@string/add_new_server_title" >
         </activity>
