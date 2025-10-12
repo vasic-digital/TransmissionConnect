@@ -14,6 +14,7 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.evernote.android.job.JobManager
 import com.shareconnect.transmissionconnect.R
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import com.shareconnect.transmissionconnect.analytics.Analytics
 import com.shareconnect.transmissionconnect.di.AppContainer
@@ -143,6 +144,7 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
         initializeRSSSync()
         initializeBookmarkSync()
         initializePreferencesSync()
+
         observeLanguageChanges()
 
         // Check if onboarding is needed
@@ -168,6 +170,7 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
         )
 
         ProcessLifecycleOwner.get().lifecycleScope.launch {
+            delay(100) // Small delay to avoid port conflicts
             themeSyncManager.start()
         }
     }
@@ -179,10 +182,11 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
             appId = packageName,
             appName = getString(R.string.app_name),
             appVersion = packageInfo.versionName ?: "1.0.0",
-            clientTypeFilter = ProfileData.TORRENT_CLIENT_TRANSMISSION  // Only sync Transmission profiles
+            clientTypeFilter = ProfileData.TORRENT_CLIENT_TRANSMISSION
         )
 
         ProcessLifecycleOwner.get().lifecycleScope.launch {
+            delay(200) // Small delay to avoid port conflicts
             profileSyncManager.start()
         }
     }
@@ -197,6 +201,7 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
         )
 
         ProcessLifecycleOwner.get().lifecycleScope.launch {
+            delay(300) // Small delay to avoid port conflicts
             historySyncManager.start()
         }
     }
@@ -212,6 +217,7 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
         )
 
         ProcessLifecycleOwner.get().lifecycleScope.launch {
+            delay(400) // Small delay to avoid port conflicts
             rssSyncManager.start()
         }
     }
@@ -226,6 +232,7 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
         )
 
         ProcessLifecycleOwner.get().lifecycleScope.launch {
+            delay(500) // Small delay to avoid port conflicts
             bookmarkSyncManager.start()
         }
     }
@@ -240,6 +247,7 @@ class TransmissionRemote : Application(), OnSharedPreferenceChangeListener {
         )
 
         ProcessLifecycleOwner.get().lifecycleScope.launch {
+            delay(600) // Small delay to avoid port conflicts
             preferencesSyncManager.start()
         }
     }

@@ -7,6 +7,8 @@ pluginManagement {
     plugins {
         id 'com.android.application' version '8.9.1'
         id 'org.jetbrains.kotlin.android' version '2.0.0'
+        id 'org.jetbrains.kotlin.jvm' version '2.0.0'
+        id 'org.jetbrains.kotlin.plugin.serialization' version '2.0.0'
         id 'com.google.gms.google-services' version '4.4.3'
         id 'com.google.firebase.crashlytics' version '3.0.6'
     }
@@ -28,3 +30,14 @@ rootProject.name = "TransmissionConnector"
 
 include ':mockserver'
 include ':TransmissionConnector'
+include ':DesignSystem'
+include ':Onboarding'
+include ':Asinka:asinka'
+include ':ThemeSync'
+include ':ProfileSync'
+include ':HistorySync'
+include ':RSSSync'
+include ':BookmarkSync'
+include ':PreferencesSync'
+include ':LanguageSync'
+include ':Localizations'
