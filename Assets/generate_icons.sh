@@ -60,8 +60,8 @@ convert Logo_square_transparent.png -resize 192x192 ../TransmissionConnector/src
 # Generate splash screen logos
 echo "Generating splash screen logos..."
 
-# Splash logo (360x360)
-convert Logo_square_transparent.png -resize 360x360 ../TransmissionConnector/src/main/res/drawable/splash_logo.png
+# Splash logo (1024x1024 for high resolution)
+convert Logo_square_transparent.png -resize 1024x1024 ../TransmissionConnector/src/main/res/drawable/splash_logo.png
 
 # Generate adaptive icon background (solid color)
 echo "Generating adaptive icon background..."
