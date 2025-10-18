@@ -316,4 +316,8 @@
 
     <string name="notification_channel_name">Torrent Downloading Finished</string>
 
+    <!-- ShareConnect integration -->
+    <string name="metube">MeTube</string>
+    <string name="not_sent">Not sent</string>
+
 </resources>

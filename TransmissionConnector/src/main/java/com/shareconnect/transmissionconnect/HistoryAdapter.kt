@@ -82,8 +82,9 @@ class HistoryAdapter(private val listener: OnHistoryItemClickListener) :
             textViewServiceType.text = serviceTypeText
 
             // Profile information
-            textViewProfile.text = if (item.profileName != null && item.profileName.isNotEmpty()) {
-                "Profile: ${item.profileName}"
+            val profileName = item.profileName
+            textViewProfile.text = if (profileName != null && profileName.isNotEmpty()) {
+                "Profile: $profileName"
             } else {
                 itemView.context.getString(R.string.not_sent)
             }

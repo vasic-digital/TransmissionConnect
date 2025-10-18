@@ -23,8 +23,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.api.client.repackaged.com.google.common.base.Strings;
-
 import com.shareconnect.transmissionconnect.OnBackPressedListener;
 import com.shareconnect.transmissionconnect.R;
 
@@ -219,9 +217,9 @@ public class ServerDetailsFragment extends Fragment implements OnBackPressedList
             return true;
         if (isAuthEnabled != server.isAuthenticationEnabled())
             return true;
-        if (!getUiUserName().equals(Strings.nullToEmpty(server.getUserName())))
+        if (!getUiUserName().equals(StringUtils.defaultString(server.getUserName())))
             return true;
-        if (!getUiPassword().equals(Strings.nullToEmpty(server.getPassword())))
+        if (!getUiPassword().equals(StringUtils.defaultString(server.getPassword())))
             return true;
         if (!getUiRpcUrl().equals(server.getRpcUrl()))
             return true;
@@ -247,11 +245,11 @@ public class ServerDetailsFragment extends Fragment implements OnBackPressedList
             isAuthEnabled = server.isAuthenticationEnabled();
             authCheckBox.setChecked(isAuthEnabled);
         }
-        if (!getUiUserName().equals(Strings.nullToEmpty(server.getUserName()))) {
-            userNameEdit.setText(Strings.nullToEmpty(server.getUserName()));
+        if (!getUiUserName().equals(StringUtils.defaultString(server.getUserName()))) {
+            userNameEdit.setText(StringUtils.defaultString(server.getUserName()));
         }
-        if (!getUiPassword().equals(Strings.nullToEmpty(server.getPassword()))) {
-            passwordEdit.setText(Strings.nullToEmpty(server.getPassword()));
+        if (!getUiPassword().equals(StringUtils.defaultString(server.getPassword()))) {
+            passwordEdit.setText(StringUtils.defaultString(server.getPassword()));
         }
         if (!getUiRpcUrl().equals(server.getRpcUrl())) {
             rpcUrlEdit.setText(server.getRpcUrl());

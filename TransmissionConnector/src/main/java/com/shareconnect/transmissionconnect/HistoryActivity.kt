@@ -95,7 +95,7 @@ class HistoryActivity : AppCompatActivity(), HistoryAdapter.OnHistoryItemClickLi
 
                 // Filter for TransmissionConnect (only Transmission torrents and general media)
                 val application = application as TransmissionRemote
-                allHistoryItems = application.historySyncManager?.repository?.filterForTransmissionConnect(allHistoryItems) ?: emptyList()
+                allHistoryItems = application.historySyncManager?.filterForTransmissionConnect(allHistoryItems) ?: emptyList()
 
                 // Extract unique values for filters
                 serviceProviders = allHistoryItems.mapNotNull { it.serviceProvider }.distinct().sorted()
