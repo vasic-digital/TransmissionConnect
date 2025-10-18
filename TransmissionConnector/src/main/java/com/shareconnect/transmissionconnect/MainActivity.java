@@ -761,6 +761,10 @@ public class MainActivity extends BaseSpiceActivity implements TorrentUpdater.To
         } else if (id == R.id.action_pause_all_torrents) {
             pauseAllTorrents();
             return true;
+        } else if (id == R.id.action_history) {
+            Intent intent = new Intent(this, HistoryActivity.class);
+            startActivity(intent);
+            return true;
         } else {
             return super.onOptionsItemSelected(item);
         }

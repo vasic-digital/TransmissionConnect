@@ -13,5 +13,9 @@
             android:title="@string/action_pause_all_torrents"
             android:icon="@drawable/ic_pause"
             app:showAsAction="ifRoom"/>
+        <item android:id="@+id/action_history"
+            android:title="History"
+            android:icon="@drawable/ic_home"
+            app:showAsAction="never"/>
     </group>
 </menu>
