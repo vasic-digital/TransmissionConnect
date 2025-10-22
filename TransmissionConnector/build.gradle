@@ -155,6 +155,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'com.google.truth:truth:1.4.4'
     testImplementation 'org.mockito.kotlin:mockito-kotlin:6.1.0'
+    testImplementation "org.jetbrains.kotlin:kotlin-test:2.0.0"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:2.0.0"
 
     androidTestImplementation 'androidx.test:core:1.7.0'
     androidTestImplementation 'androidx.test:core-ktx:1.7.0'

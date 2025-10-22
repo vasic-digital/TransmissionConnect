@@ -1,4 +1,4 @@
-package net.yupol.transmissionremote.app.analytics
+package com.shareconnect.transmissionconnect.analytics
 
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test

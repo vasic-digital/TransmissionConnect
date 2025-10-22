@@ -1,4 +1,4 @@
-package net.yupol.transmissionremote.app.analytics
+package com.shareconnect.transmissionconnect.analytics
 
 import com.google.firebase.analytics.FirebaseAnalytics.Event
 import com.google.firebase.analytics.FirebaseAnalytics.Param
