@@ -30,7 +30,8 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import digital.vasic.security.access.SecurityAccessManager
+import com.shareconnect.transmissionconnect.MainActivity
+import digital.vasic.security.access.access.SecurityAccessManager
 import digital.vasic.security.access.data.AccessMethod
 import kotlinx.coroutines.runBlocking
 import org.junit.After
